@@ -35,8 +35,8 @@ class Login extends Component {
             onChange={appChange}
             onKeyPress={appKeyPress}
           />
-          <button onClick={appClick}>로그인</button>
-          <button onClick={appClick}>회원가입</button>
+          <button type="button" class="btn btn-default btn-sm" onClick={appClick}>로그인</button>
+          <button type="button" class="btn btn-default btn-sm" onClick={appClick}>회원가입</button>
         </header>
       </div>
     );
