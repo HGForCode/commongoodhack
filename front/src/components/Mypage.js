@@ -1,7 +1,27 @@
 import React, {Component} from 'react';
 import './mypage.css';
+import axios from 'axios';
 
 class Mypage extends Component {
+    handleClickButton1 = () => {
+    console.log("click1");
+    
+    axios.get('/ScrappedClubs(서버주소라고한다)')
+.then(function (response) {console.log(response);})
+.catch(error => {console.log('error : ',error.response)})
+    
+    
+    } 
+
+    handleClickButton2 = () => {
+      console.log("click2");
+      axios.get('/AppliedClubs(서버주소라고한다)')
+      .then(function (response) {console.log(response);})
+      .catch(error => {console.log('error : ',error.response)})      
+      
+      
+      } 
+
     render(){
         return(
             <>
@@ -12,7 +32,7 @@ class Mypage extends Component {
       <div class="col-lg-3">
 
       <div class="card">
-          <img src="C:\Users\user\Desktop\group\duck.png" alt="no image"/>
+          <img src="" alt="no image"/>
           <div class="container">
           <h4><b>user name</b></h4>
           </div>
@@ -44,13 +64,8 @@ class Mypage extends Component {
 
       <div class="col-lg-9">
         <div class="menue">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">스크랩한 동아리</a></li>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <li role="presentation"><a href="#">신청한 동아리</a></li>
-        </ul>
+        <button class="btn btn-default" type="button1" onClick={this.handleClickButton1}>스크랩한동아리</button>
+        <button class="btn btn-default" type="button2" onClick={this.handleClickButton2}>신청한 동아리</button>
         </div>
 
 

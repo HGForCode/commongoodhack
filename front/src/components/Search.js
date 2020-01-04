@@ -1,7 +1,30 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Search extends Component{
-    render(){
+
+  state={
+    searchinfo:''
+  }
+
+  handleUsersearchinfo = (e) => {
+    this.setState({searchinfo:e.target.value})
+}
+ 
+  handleClickButton = () => {
+    console.log(this.state.searchinfo);
+    // TODO: axios를 통해서 서버에 searchinfo 를 보내야함
+    axios.post(
+      '/Search', {
+      searchinfo : ''
+       })
+      .then(function (response) {console.log(response);})
+      .catch(error => {console.log('error : ',error.response)})
+    
+  } 
+            
+
+  render(){
         return(
             <>
             
@@ -67,9 +90,9 @@ class Search extends Component{
       <div class="col-lg-9">
        
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..."></input>
+          <input type="text" class="form-control" placeholder="Search for..." onChange={this.handleUsersearchinfo} value={this.state.searchinfo}></input>
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go</button>
+            <button class="btn btn-default" type="button" onClick={this.handleClickButton}>Go</button>
           </span>
         </div>
 
@@ -109,6 +132,7 @@ class Search extends Component{
               </div>
             </div>
           </div>
+
           <div class="card mt-4">
             <div class="card-body">
               <h3 class="card-title">이캅스</h3>
