@@ -2,36 +2,5 @@
  *{
       font-family:'TmonMonsori' 
    } 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-    background-color:green !important;
-    color:white !important;
-    margin-bottom:1rem;
-}
 
-.Wrapper{
-    width:100%;
-    display:flex;
-    flex-direction:row;
-    font-size:25px;
-    margin-bottom:1rem;
-    margin-left:2rem; margin-right:2rem;
-}
-.name{
-    margin-top:2rem;
-    text-align:center;
-    text-decoration:none !important;
-}
-
-.login{
-    font-size:12px;
-    margin-left:auto;
-    margin-right:10rem;
-    margin-top:2rem;
-}
-a{
-    color: black !important;
-}
-.nav{
-    margin-left:2rem; margin-right:2rem;
-}
 

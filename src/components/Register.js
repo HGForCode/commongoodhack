@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './register_css.css'
-class Page extends Component{
+class Register extends Component{
     render(){
         return(
             <>
@@ -49,4 +49,4 @@ class Page extends Component{
         );
     }
 }
-export default Page;
+export default Register;

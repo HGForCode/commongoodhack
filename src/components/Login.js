@@ -14,7 +14,7 @@ class Login extends Component {
   }
   /* 로그인 버튼 클릭 ==> onClick */
   appClick = () => {
-    console.log(`id는 : ${this.state.id}\npw는 : ${this.state.password}`);
+    console.log('id는 : ${this.state.id}\npw는 : ${this.state.password}');
   }
   appKeyPress = (e) => {
     if (e.key === 'Enter') {
