@@ -1,0 +1,50 @@
+.registerWrapper{
+    display:flex;
+    padding:1rem;
+    flex-direction:row;
+    border: 1px solid lightgray;
+    margin-left:5rem;
+    width:90%;
+    height:fit-content;
+    
+}
+.registerWrapper .g_name, .desc, .date{
+    margin-right:50px;
+}
+.list li{
+    position:relative;
+    padding:10px 275px 10px 30px;
+    text-align:left;
+    border-bottom:1px;
+}.list .g_name{
+    text-align:center;
+    width:15%;
+}
+.list .desc{
+    width:60%;
+}
+ul{
+    list-style: none;
+}
+
+.list .top{
+    display:flex;
+    margin-left:5rem;
+}
+
+.list .top .g_name{
+    width:15%;
+   text-align:center;
+   margin-right:50px;
+}
+.list .top .desc{
+    text-align:center;
+    width:45%;
+ }
+ .list .top .date{
+    text-align:center;
+
+ }
+ .registerWrapper button{
+     width:15%;
+ }
