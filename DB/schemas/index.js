@@ -24,5 +24,5 @@ module.exports=()=>{
         connect();
     });
     require('./user');
-    require('/club');
+    require('./club');
 };

@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var clubRouter = require('./routes/club');
 
 var connect = require('./schemas');
+const cors  = require('cors')
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -18,7 +19,7 @@ const url = require('url');
 
 var app = express();
 connect();
-
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -30,12 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('../front/src/pages/Signup', usersRouter);
-app.use('../front/src/pages/Login', usersRouter);
-app.use('../front/src/pages/Mypage',usersRouter);
-app.use('../front/src/pages/Mypage',clubRouter);
-app.use('../front/src/pages/Register', clubRouter);
-
+app.use('/user', usersRouter)
 // login
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -80,7 +76,7 @@ app.post('/logout', (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('listening 3000port');
+    console.log('listening 3000 port');
 });
 
 function duplicate(req, res, uid, upwd) {
