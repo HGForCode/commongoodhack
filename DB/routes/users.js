@@ -21,7 +21,7 @@ router.post('/signup', function(req, res, next) {
             .then((result)=>{
             console.log(result);
             res.status(201).json(result);
-           
+
           })
             .catch((err)=>{
               console.error(err);

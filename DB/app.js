@@ -75,8 +75,8 @@ app.post('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.listen(3000, () => {
-    console.log('listening 3000 port');
+app.listen(7000, () => {
+    console.log('listening 7000 port');
 });
 
 function duplicate(req, res, uid, upwd) {
