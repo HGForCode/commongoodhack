@@ -1,112 +1,78 @@
-import React, { useState, Component } from 'react';
-import {Link, Route, BrowserRouter, HashRouter, NavLink} from "react-router-dom";
+import React, { Component } from 'react';
+import {Link, Route, HashRouter as Router } from "react-router-dom";
 import './Login_css.css';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
-    constructor(props) {
-      super(props);
-      this.signIn = this.signIn.bind(this);
-      this.handleEmailChange = this.handleEmailChange.bind(this);
-      this.handlePasswordChange = this.handlePasswordChange.bind(this);
+  /* id password state값 으로 정의 */
+  state = {
+    id: '',
+    password: ''
+  }
+  /* input value 변경 ==> onChange */
+  appChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
-      this.state = {
-        email:'',
-        password:''
-      };
-    }
-    signIn = () =>{
-      alert('Email address is ' + this.state.email + ' Password is ' + this.state.password);
-      // TODO: 내 컴퓨터에서 서버를 켠뒤, /Login을 <서버 URL>/Login 으로 변경
-      axios.post('/Login', {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
 
-    handleEmailChange(e){
-      this.setState({email:e.target.value})
-    }
-    handlePasswordChange(e){
-      this.setState({password:e.target.value})
-    }
+  /* 로그인 버튼 클릭 ==> onClick */
+  appClick = () => {
+    console.log('id는 : '+ this.state.id+'\n'+'pw는 : ' + this.state.password);
+    const username = localStorage.getItem("email");
+    const password = localStorage.getItem("password");
 
-    render() {
-      return (
-        <div>
-          
-          <div className="Login">
+    const inputusername = this.state.id;
+    const inputpassword = this.state.password;
+
+    console.log(username);
+    console.log(password);
+    console.log(inputusername);
+    console.log(inputpassword);
+
+
+    (function () {
+      if(inputusername == username && inputpassword == password) {
+        alert('You are loged in.');
+      }else {
+        alert('ERROR.');
+      }
+  })();
+
+  }
+
+
+  appKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.appClick();
+    }
+  }
+
+
+
+  render() {
+    const { id, password } = this.state;
+    const { appChange, appClick, appKeyPress, handleNext } = this;
+    return (
+
+      <div className="Login">
         <header className="Login-header">
-           <input type="email" placeholder="이메일" id="inputEmail" onChange={this.handleEmailChange} />
-           <input type="password" name="password" placeholder="비밀번호" onChange={this.handlePasswordChange}/>
-           
-            <button type="button" class="btn btn-default btn-sm" onClick={this.signIn}>로그인</button>
-            <button type="button" class="btn btn-default btn-sm"><Link to="/Signup">회원가입</Link></button>
-            
-            </header>
-         </div>
-          
-        </div>
-
-      );
-    }
+          <input type="text" name="id" placeholder="아이디" value={id} onChange={appChange} />
+          <input type="password"
+            name="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={appChange}
+            onKeyPress={appKeyPress}
+          />
+          <Link to = '/Mypage'><button type="button" class="btn btn-default btn-sm" onClick={appClick}>로그인</button></Link>
+          <Router>
+          <Link to ="/Signup"><button type="button" class="btn btn-default btn-sm">회원가입</button> </Link>
+          </Router>
+        </header>
+      </div>
+    );
+  }
 }
 
-// class Login extends React.Component {
-//     constructor(props) {
-//       super(props);
-//       this.signIn = this.signIn.bind(this);
-//       this.handleEmailChange = this.handleEmailChange.bind(this);
-//       this.handlePasswordChange = this.handlePasswordChange.bind(this);
-//       this.state = {
-//         email:'',
-//         password:''
-//       };
-//     }
-//     signIn(){
-//       axios.post('/signin', {
-//         email: this.state.email,
-//         password: this.state.password
-//       })
-//       .then(function (response) {
-//         console.log(response);
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//     }
-//     handleEmailChange(e){
-//       this.setState({email:e.target.value})
-//     }
-//     handlePasswordChange(e){
-//       this.setState({password:e.target.value})
-//     }
-//   render() {
-//     const { id, password } = this.state;
-//     const { appChange, appClick, appKeyPress } = this;
-//     return (
-//       <div className="Login">
-//         <header className="Login-header">
-//           <input type="text" name="id" placeholder="아이디" value={id} onChange={this.handleEmailChange} />
-//           <input type="password"
-//             name="password"
-//             placeholder="비밀번호"
-//             value={password}
-//             onChange={this.handlePasswordChange}
-//             onKeyPress={appKeyPress}
-//           />
-//           <button type="button" class="btn btn-default btn-sm" onClick={this.signIn}>로그인</button>
-//           <button type="button" class="btn btn-default btn-sm" onClick={appClick}>회원가입</button>
-//         </header>
-//       </div>
-//     );
-//   }
-// }
 export default Login;

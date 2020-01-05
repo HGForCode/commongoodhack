@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from'react-router';
-import axios from 'axios';
 import './Login_css.css'
 
 class Signup extends Component {
@@ -24,20 +22,14 @@ class Signup extends Component {
           password:''
         };
     }
-   
-     onClick =async  () => {
-        await axios.post('http://localhost:3000/user/signup', {
-            username : this.state.username, 
-            email : this.state.email,
-            password : this.state.password})
-            .then(function (response) {
-                console.log(response);
-                alert("회원가입 되었습니다.");
-                return <Redirect to="./menubar" />
-            })
-            .catch(error => {
-                console.log('error : ',error.response)}
-        )}
+    signIn = () => {
+      alert(this.state.username+"님 회원가입이 완료되었습니다!");
+      console.log(this.state.email);
+      console.log(this.state.password);
+      localStorage.setItem("email", this.state.email);
+      localStorage.setItem("password", this.state.password);
+    }
+
     render() {
         return (
             <div className="signup-form">
@@ -47,21 +39,21 @@ class Signup extends Component {
                 <div class="form-group">
 			    <label class="control-label col-xs-4">User name</label>
                 <div class="col-xs-8">
-                <input type="text" value={this.state.usernamel} onChange={this.handleUsernameChange} class="form-control" name="name" required="required"></input>
+                <input type="usernamel" onChange={this.handleUsernameChange} class="form-control" name="name" required="required"></input>
                 </div>
             </div>
             <div class="form-group">
 			    <label class="control-label col-xs-4">Email Address</label>
                 <div class="col-xs-8">
-              <input type="text" value={this.state.email}  onChange={this.handleEmailChange} class="form-control" name="email" required="required"></input>
+              <input type="email"  onChange={this.handleEmailChange} class="form-control" name="email" required="required"></input>
                 </div>
             </div>
             <div class="form-group">
 			<label class="control-label col-xs-4">Password</label>
 			<div class="col-xs-8">
-                <input type="password"   value={this.state.password} onChange={this.handlePasswordChange} class="form-control" name="password" required="required"></input>
+                <input type="password" onChange={this.handlePasswordChange} class="form-control" name="password" required="required"></input>
             </div>
-            <button onClick={this.onClick} type="button" class="btn btn-primary btn-lg">Sign Up</button>
+            <button onClick={this.signIn} type="button" class="btn btn-primary btn-lg">Sign Up</button>
         </div>
         </div>
         );
